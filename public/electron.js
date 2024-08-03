@@ -24,7 +24,7 @@ function createWindow() {
 
   // const appURL = app.isPackaged
   // ? url.format({
-  //     pathname: path.join(__dirname, 'build', 'index.html'), // Adjust this path
+  //     pathname: path.join(__dirname, 'build', 'index.html'),
   //     protocol: 'file:',
   //     slashes: true,
   //   })
