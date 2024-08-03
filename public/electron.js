@@ -1,24 +1,36 @@
-const { app, BrowserWindow } = require('electron')
-const path = require('path')
-const isDev = require('electron-is-dev')
+import { app, BrowserWindow } from 'electron';
+import path, { dirname } from 'path';
+import url, { fileURLToPath } from 'url';
 
-require('@electron/remote/main').initialize()
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 function createWindow() {
-  const win = new BrowserWindow({
+  const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
     webPreferences: {
-      nodeIntegration: true,
-      enableRemoteModule: true
+      nodeIntegration: false,
+      contextIsolation: true,
+      enableRemoteModule: false
     }
-  })
+  });
 
-  win.loadURL(
-    isDev
-      ? 'http://localhost:3000'
-      : `file://${path.join(__dirname, '../build/index.html')}`
-  )
+  const appURL = process.env.ELECTRON_START_URL || url.format({
+      pathname: path.join(__dirname, "index.html"),
+      protocol: "file:",
+      slashes: true,
+  });
+
+  // const appURL = app.isPackaged
+  // ? url.format({
+  //     pathname: path.join(__dirname, 'build', 'index.html'), // Adjust this path
+  //     protocol: 'file:',
+  //     slashes: true,
+  //   })
+  // : 'http://localhost:3000';
+    
+  mainWindow.loadURL(appURL);
 }
 
 app.on('ready', createWindow)
