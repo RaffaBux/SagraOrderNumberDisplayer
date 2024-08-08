@@ -1,38 +1,56 @@
-.App {
-  text-align: center;
+.app {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 100vh;
+    background-color: #92caff;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.input-area {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#order-input {
+    padding: 10px;
+    font-size: 18px;
+    width: 150px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.ready-orders, .preparing-orders {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
-.App-link {
-  color: #61dafb;
+.ready-orders {
+    border-right: 2px solid #000000;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.order-title {
+    font-size: 4vw;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.order.big {
+    font-size: 22vw;
+    font-weight: bold;
+    margin: 0px 0;
+}
+
+.order.small {
+    font-size: 11vw;
+    margin: 0px 0;
+}
+
+.preparing-orders .order {
+    font-size: 10vw;
+    margin: 0px;
 }
