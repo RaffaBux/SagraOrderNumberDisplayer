@@ -2,6 +2,10 @@
 
 In the project directory, you can run:
 
+### `npm install`
+
+Install all the stuff it needs to run.
+
 ### `npm start`
 
 Runs the app in the development mode.\
@@ -12,4 +16,4 @@ You may also see any lint errors in the console.
 
 ### `npm run electron:build`
 
-Builds the desktop app
+Builds the desktop app.
