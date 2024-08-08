@@ -21,14 +21,6 @@ function createWindow() {
       protocol: "file:",
       slashes: true,
   });
-
-  // const appURL = app.isPackaged
-  // ? url.format({
-  //     pathname: path.join(__dirname, 'build', 'index.html'),
-  //     protocol: 'file:',
-  //     slashes: true,
-  //   })
-  // : 'http://localhost:3000';
     
   mainWindow.loadURL(appURL);
 }
