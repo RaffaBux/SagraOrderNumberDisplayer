@@ -34,20 +34,15 @@ export default function App() {
                 orderInput.removeEventListener('keyup', handleKeyUp);
             };
         }
-    }, []);
+    }, [processOrder]);
 
     useEffect(() => {
-        // Save data to localStorage whenever the state changes
         localStorage.setItem('preparingOrders', JSON.stringify(preparingOrders));
         localStorage.setItem('readyOrders', JSON.stringify(readyOrders));
         localStorage.setItem('ordersHistory', JSON.stringify(ordersHistory));
     }, [preparingOrders, readyOrders, ordersHistory]);
 
     function processOrder(orderNumber) {
-        console.log('Current Preparing Orders:', preparingOrders);
-        console.log('Current Ready Orders:', readyOrders);
-        console.log('Current Order History:', ordersHistory);
-
         setOrdersHistory((prevOrdersHistory) => [
             ...prevOrdersHistory,
             {
@@ -69,6 +64,10 @@ export default function App() {
 
             console.log('CCCCCCCCCCCCCCCCC');
         }
+
+        console.log('Current Preparing Orders:', preparingOrders);
+        console.log('Current Ready Orders:', readyOrders);
+        console.log('Current Order History:', ordersHistory);
     }
 
     function undoAction() {
@@ -103,19 +102,19 @@ export default function App() {
                 <div className="order-title"> Ordini Pronti </div>
                 <div className="numbers-container"> 
                     {
-                        // readyOrders.map((number, index) => {
-                        //     <OrderNumber key={index} number={number} />
-                        // })
+                        readyOrders.map((number, index) => (
+                            <OrderNumber key={index} number={number} />
+                        ))
                     }
                 </div>
             </div>
             <div className="preparing-orders">
                 <div className="order-title"> Ordini in Preparazione </div>
-                <div id="numbers-container"> 
+                <div className="numbers-container"> 
                     {
-                        // preparingOrders.map((number, index) => {
-                        //     <OrderNumber key={index} number={number} />
-                        // })
+                        preparingOrders.map((number, index) => (
+                            <OrderNumber key={index} number={number} />
+                        ))
                     }
                 </div>
             </div>
