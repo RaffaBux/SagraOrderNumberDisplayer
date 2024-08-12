@@ -19,7 +19,7 @@ export default function App() {
                     const value = orderInput.value.trim();
                     if (value === 'UNDO') {
                         undoAction();
-                    } else if (value === 'RESET') {
+                    } else if (value === 'RISOTTO') {
                         resetAll();
                     } else if (!isNaN(value) && value !== '') {
                         processOrder(value);
@@ -54,25 +54,15 @@ export default function App() {
         if (preparingOrders.includes(orderNumber)) {
             const newPreparingOrders = preparingOrders.filter((order) => (order !== orderNumber));
 
-            console.log('BBBBBBBBBBBBBBBBBBB');
-
             setPreparingOrders(newPreparingOrders);
             setReadyOrders((prevReadyOrders) => [orderNumber, ...prevReadyOrders]);
 
         } else {
             setPreparingOrders((prevPreparingOrders) => [...prevPreparingOrders, orderNumber]);
-
-            console.log('CCCCCCCCCCCCCCCCC');
         }
-
-        console.log('Current Preparing Orders:', preparingOrders);
-        console.log('Current Ready Orders:', readyOrders);
-        console.log('Current Order History:', ordersHistory);
     }
 
     function undoAction() {
-        console.log('ORDERS HISTORY LENGTH: ' + ordersHistory.length);
-
         if (ordersHistory.length > 1) {
             var lastState = ordersHistory[ordersHistory.length - 1];
 
@@ -84,13 +74,9 @@ export default function App() {
     }
 
     function resetAll() {
-        console.log('RESETTING');
-
         setPreparingOrders([]);
         setReadyOrders([]);
         setOrdersHistory([]);
-
-        console.log('RESETTED');
     }
 
     return (
@@ -100,9 +86,10 @@ export default function App() {
             </div>
             <div className="ready-orders">
                 <div className="order-title"> Ordini Pronti </div>
-                <div className="numbers-container"> 
+                <div className="numbers-container">
                     {
-                        readyOrders.map((number, index) => (
+                        
+                        readyOrders.slice(0, 5).map((number, index) => (
                             <OrderNumber key={index} number={number} />
                         ))
                     }
@@ -110,7 +97,7 @@ export default function App() {
             </div>
             <div className="preparing-orders">
                 <div className="order-title"> Ordini in Preparazione </div>
-                <div className="numbers-container"> 
+                <div className="numbers-container">
                     {
                         preparingOrders.map((number, index) => (
                             <OrderNumber key={index} number={number} />
